@@ -1,5 +1,5 @@
 # Data needed to retrieve
-# 1. The total number of votes 369711
+# 1. The total number of votes
 # 2. A complete list of candidates who received votes
 # 3. The total number of votes each candidate won
 # 4. The percentage of votes each candidate won
@@ -12,7 +12,7 @@ import os
 # Assign a variable for the file to load and the path.
 file_to_load = os.path.join("Resources","election_results.csv")
 
-# Create a filename variable to an indirect path to the file
+# Create a filename variable to an indirect path to save the file
 file_to_save = os.path.join("analysis","election_analysis.txt")
 
 # Create total vote counter
@@ -41,7 +41,7 @@ with open(file_to_load) as election_data:
         # add to the total vote count
         total_votes += 1
 
-        # print the candidate name from each row
+        # get the candidate name from each row
         candidate_name = row[2]
 
         # If candidate does not match any existing candidate
@@ -55,39 +55,57 @@ with open(file_to_load) as election_data:
         # add votes to that candidates count 
         candidate_votes[candidate_name] +=1
 
+# Save results to text file
+with open (file_to_save, "w") as txt_file:
+    # print results to terminal
+    election_results = (
+        f"\nElection Results\n"
+        f"-------------------------\n"
+        f"Total Votes: {total_votes:,}\n"
+        f"-------------------------\n")
+
+    print(election_results, end="")
+    # Save the final vote count to text file
+    txt_file.write(election_results)
 
         
-# print candidate vote dictionary
-#print(candidate_votes)
+    # print candidate vote dictionary
+    #print(candidate_votes)
 
-# Determine percentage of votes by looping through the counts
-# Go through the candidate list
-for candidate_name in candidate_votes:
-    # Retrieve candidate vote count
-    votes = candidate_votes[candidate_name]
+    # Determine percentage of votes by looping through the counts
+    # Go through the candidate list
+    for candidate_name in candidate_votes:
+        # Retrieve candidate vote count
+        votes = candidate_votes[candidate_name]
 
-    # Calculate percentage of votes
-    vote_percentage = float(votes) / float(total_votes) * 100
+        # Calculate percentage of votes
+        vote_percentage = float(votes) / float(total_votes) * 100
 
-    # Print candidate name and percentage of votes
-    print(f"{candidate_name}: {vote_percentage:.1f}% ({votes:,})\n")
-    
-        # Determine winning vote count and candidate
-    if (votes > winning_count) and (vote_percentage > winning_percentage):
-            
-        # If true then set winning count = votes and winning percent = vote percentage
-        winning_count = votes
-        winning_percentage = vote_percentage
-        # Set winning candidate = to candidate name
-        winning_candidate = candidate_name
+        # Create variable for candidate results
+        candidate_results = (f"{candidate_name}: {vote_percentage:.1f}% ({votes:,})\n")
 
-winning_candidate_summary = (
-    f"_________________________\n"
-    f"Winner: {winning_candidate}\n"
-    f"Winning Vote Count: {winning_count:,}\n"
-    f"Winning Percentage: {winning_percentage:.1f}%\n"
-    f"_________________________\n")
-print(winning_candidate_summary)
+        # print candidate results to terminal
+        print(candidate_results)
+
+        # print candidates results to text file
+        txt_file.write(candidate_results)
+        
+            # Determine winning vote count and candidate
+        if (votes > winning_count) and (vote_percentage > winning_percentage):
+                
+            # If true then set winning count = votes and winning percent = vote percentage
+            winning_count = votes
+            winning_percentage = vote_percentage
+            # Set winning candidate = to candidate name
+            winning_candidate = candidate_name
+
+    winning_candidate_summary = (
+        f"_________________________\n"
+        f"Winner: {winning_candidate}\n"
+        f"Winning Vote Count: {winning_count:,}\n"
+        f"Winning Percentage: {winning_percentage:.1f}%\n"
+        f"_________________________\n")
+    #print(winning_candidate_summary)
 
 
 
