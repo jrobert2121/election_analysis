@@ -100,12 +100,15 @@ with open (file_to_save, "w") as txt_file:
             winning_candidate = candidate_name
 
     winning_candidate_summary = (
-        f"_________________________\n"
+        f"-------------------------\n"
         f"Winner: {winning_candidate}\n"
         f"Winning Vote Count: {winning_count:,}\n"
         f"Winning Percentage: {winning_percentage:.1f}%\n"
-        f"_________________________\n")
-    #print(winning_candidate_summary)
+        f"-------------------------\n")
+    print(winning_candidate_summary)
+
+    # Save winning candidate summary to text file
+    txt_file.write(winning_candidate_summary)
 
 
 
