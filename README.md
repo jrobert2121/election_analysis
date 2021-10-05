@@ -4,7 +4,13 @@
 The Colorado Board of Elections needs an election audit completed on a U.S. congressional district's votes.  The dataset will include votes from three sources: hand counted mail in ballots, machine counted punch card ballots, and computer counted Direct Recording Electronic ballots.  These three voting methods will determine the election results.  Instead of completing the election audit using excel, the audit will be conducted using a Python script to automate the process for future elections.
 
 ### Purpose
-The purpose of the project is to automate the analysis of the election results and declare a winner by popular vote.
+The purpose of the project is to automate the analysis of the election results using Python and produce the following information:
+
+- Calculate the total votes
+- Produce a list of candidates who received votes
+- Calculate the total number of votes received for each candidate
+- Calculate the total percentage of votes for each candidate
+- Determine the election winner by popular vote
 
 ## Resources
 
@@ -107,6 +113,10 @@ candidate_votes = {}
             winning_percentage = vote_percentage
 ```
 
+- Results can be printed to the terminal and/or written to a text file.
+![Terminal_print](Resources/Terminal_print.png)
+
+
 ## [Results](analysis/election_analysis.txt)
 
 - The total votes cast were 369,711.  
@@ -128,9 +138,10 @@ candidate_votes = {}
   - Winning Vote Count: 272,892
   - Winning Percentage: 73.8%
 
-
 ## Summary
 
+Through the use of this python script, the election commission can save valuable time in producing the audit and give consistent results by using the same script, with a few modifications, for each election.  Completing an audit with excel becomes more cumbersome with even larger datasets, like that of a senate race than just a congressional precinct. Manually, conducting election audits through Excel also leaves open a greater possibility of human error.
 
+The script can be modified for use for smaller, local elections as well.  In the case of a township election, the code used to track and calculate county level votes can simply be commented out.
 
-provide a business proposal to the election commission on how this script can be used - with some modifications - for any election.  give at least 2 examples of how this script can be modified to be used for other elections.
+In a larger election, such as a senate election, votes may be tabulated at a precinct level rather than a county level.  By adding another list and dictionary to track precinct results, we can use them along with precinct level variables to replicate the county level results at the precinct level as well.  
