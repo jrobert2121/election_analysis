@@ -8,7 +8,7 @@ The purpose of the project is to automate the analysis of the election results a
 
 ## Resources
 
-- Data Source: [election_results.csv](analysis/election_analysis.txt)
+- Data Source: [election_results.csv](Resources/election_results.csv)
 - Software: Python 3.8.8, Visual Studio Code 1.60.2
 
 ## Results
